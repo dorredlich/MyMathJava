@@ -1,5 +1,7 @@
 package myMath;
 
+import org.junit.Test;
+import static junit.framework.TestCase.*;
 
 /**
  * This class represents a simple (naive) tester for the Monom class,
@@ -20,70 +22,58 @@ package myMath;
  */
 public class MonomTest {
 
+    private final static double chk = 0.00001;
 
-
-    public static void main(String[] args) {
-
-
-        boolean test1 = testMonomcopy();
-        System.out.println("Test Monom copy : " + test1);
-        testMonomString();
-        boolean test2 = testDerivative();
-        System.out.println("Test Monom derivative : "+ test2);
-        testAdd();
-        testMultiply();
-
-    }
-
-    public static boolean testMonomcopy() {
+    @Test
+    public void testMonomcopy() {
         Monom m1 = new Monom(2.17,4);
         Monom m2 = new Monom(m1);
         if(m1.get_coefficient() != (m2.get_coefficient())) {
-            return false;
+            fail("Error in copy constructor");
         }
-        return true;
     }
 
-    public static void testMonomString(){
-        Monom m1 = new Monom("x");
-        System.out.println(m1.toString());
+    @Test
+    public void testMonomtoString() {
+        double kido = -2.21;
+        int power = 12;
+        Monom m1 = new Monom(kido, power);
+        Monom m2 = new Monom(m1);
+        String s = m1.toString();
+
+        if(!s.equals(m2.toString())) {
+            fail("Error in the toString function");
+        }
     }
 
-
-    public static boolean testDerivative() {
+    @Test
+    public void testDerivative() {
         double coef = 5;
         int power = 2;
         Monom m1 = new Monom(coef,power);
         Monom m2 = m1.derivative();
-        if(m2.get_coefficient() == 10 && m2.get_power() == 1){
-            return true;
-        }
-        return false;
+        assertTrue(m2.get_coefficient() == 10);
+        assertTrue(m2.get_power() == 1);
     }
 
-    public static void testAdd() {
-        double conf = -5, conf2 = 5;
-        int pow1 = 5, pow2 = 5;
-        Monom m1 = new Monom(conf, pow1);
-        Monom m2 = new Monom(conf2,pow2 );
-        try{
-            m1.add(m2);
-            System.out.println(m1);
-        }catch (Exception e){
-            if(m1.get_power() != m2.get_power())
-                System.out.println("The power not equals");
-            if(m1.get_coefficient() + m2.get_coefficient() == 0)
-                System.out.println("0");
-        }
+    @Test
+    public void testAdd() {
+        double conf = -3, conf2 = 3;
+        int power = 3;
+        Monom m1 = new Monom(conf,power);
+        Monom m2 = new Monom(conf2,power);
+        m1.add(m2);
+        assertEquals(m1.get_coefficient(), conf+conf2,chk);
     }
 
-    public static void testMultiply() {
+    @Test
+    public void testMultiply() {
         double conf = 4, conf2 = 5;
         int pow1 = 5, pow2 = 5;
         Monom m1 = new Monom(conf,pow1);
         Monom m2 = new Monom(conf2,pow2);
-        Monom m3 = new Monom(m1.multiply(m2));
-        String result = m3.toString();
-        System.out.println(result);
+        Monom m3 = m1.multiply(m2);
+        assertEquals(m3.get_coefficient(), conf * conf2,chk);
+        assertEquals(m3.get_power(), pow1 + pow2,chk);
     }
 }
