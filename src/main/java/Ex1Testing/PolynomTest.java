@@ -1,5 +1,8 @@
-package myMath;
+package Ex1Testing;
 
+import Ex1.Monom;
+import Ex1.Polynom;
+import Ex1.Polynom_able;
 import org.junit.Test;
 import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
@@ -38,6 +41,13 @@ public class PolynomTest {
 
     @Test
     public void testPolyonomArea() throws Exception {
+        Polynom p1 = new Polynom();
+        String[] monoms = {"1", "x", "x^2", "0.5x^2"};
+        Monom m = new Monom(monoms[1]);
+        p1.add(m);
+        double area = p1.area(0, 1, 0.0001);
+        if(area < 0.4 || area > 0.6)
+            fail("Error in the area function");
     }
 
     @Test
@@ -54,6 +64,17 @@ public class PolynomTest {
         Polynom_able p2 = p1.derivative();
         if(!p2.toString().equals("2.0x"))
             fail("Error in the derivative function");
+    }
+
+    @Test
+    public void testPolyonomMultMonom() throws Exception {
+        Polynom p1 = new Polynom ("2x^2-1");
+        double kido = 2;
+        int power = 3;
+        Monom m1 = new Monom(kido, power);
+        p1.multiply(m1);
+        if(!p1.toString().equals("4.0x^5-2.0x^3"))
+            fail("Error in the mult function");
     }
 
     @Test
