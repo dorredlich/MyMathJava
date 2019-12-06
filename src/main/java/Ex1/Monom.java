@@ -1,6 +1,4 @@
-package myMath;
-
-import java.util.Iterator;
+package Ex1;
 
 /**
  * This class represents a simple "com.polynom.Monom" of shape a*x^b, where a is a real number and a is an integer (summed a none negative),
@@ -14,7 +12,10 @@ public class Monom implements function {
     public static final Monom ZERO = new Monom(0,0);
     public static final Monom MINUS1 = new Monom(-1,0);
     public static final double EPSILON = 0.0000001;
-    private double _coefficient; //
+
+
+
+    private double _coefficient;
     private int _power;
 
     /**
@@ -96,8 +97,7 @@ public class Monom implements function {
      * @param ot (Other) monom that gets copied
      */
 
-    public Monom(Monom ot) {
-        this(ot.get_coefficient(), ot.get_power());
+    public Monom(Monom ot) { this(ot.get_coefficient(), ot.get_power());
     }
 
     /**
@@ -192,5 +192,52 @@ public class Monom implements function {
         }
         else
             return "" + this.get_coefficient() + "x^" + this.get_power();
+    }
+
+    /**
+     * Constructor which gets String and turn it to function by the help of init the Monom
+     *
+     */
+    @Override
+    public function initFromString(String s){
+        function m = new Monom(s);
+        return m;
+    }
+
+    /**
+     * fucnction that copies a Monom and returns it
+     *
+     * @return return new copy of monom.
+     */
+    @Override
+    public function copy(){
+        return new Monom(this.toString());
+
+    }
+
+    /**
+     * boolean function that check if object is kind of Monom and check if two Monon are equals.
+     *
+     * @param: obj: represent the Object
+     */
+    @Override
+    public boolean equals(Object obj){
+        boolean ans = false;
+        if(obj != null && obj instanceof Monom) {
+            Monom m = (Monom)obj;
+            if(this.isZero() && m.isZero()) {ans = true;}
+            else {
+                double dc = m.get_coefficient() - this.get_coefficient();
+                if(m.get_power() == this.get_power() && Math.abs(dc)<EPSILON) {
+                    ans = true;
+                }
+            }
+        }
+        else {
+            if(obj!=null && obj instanceof function) {
+                ans = obj.equals(this);
+            }
+        }
+        return ans;
     }
 }

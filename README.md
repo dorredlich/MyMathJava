@@ -1,21 +1,29 @@
 # MyMathJava
-myMath Project
+Ex1 Project
 by Dor Redlich
-There are three Interfaces :
-* Polynom_Able
-* Function
-* Cont_function
-There are three main classes :
+There are six Interfaces :
+* Polynom_Able.
+* Function.
+* Cont_function.
+* functions.
+* Operation.
+* complex_function.
+
+There are five main classes :
 * Polynom
 * Monom
 * Monom_Comperator
 The Polynom is an Object composed of Monoms in a shape a*x^b .
 b MUST be a Natural Number.
 a can be a Real Number.
+* ComplexFunction.
+* Function_GUI.
+
 # Monom
 Constructors :
 1. Monom(double a, int b) – creates new Monom where a is the coefficient and b is the power.
 2. Monom(Monom other) – copy constructor creates new Monom with same coefficient and power as the Monom other.
+
 # Methods
 1. Void add(Monom m) – add the Monom m to current Monom.
 2. Monom derivative() – derivative Monom and return new Monom.
@@ -25,11 +33,16 @@ Constructors :
 6. String toString() – return String a representation of this Monom in the shape ax^b.
 7. Monom(String s) – turning the string to a monom.
 8. Boolean isNumeric(String str) – checking if the string is a number.
+9. public function initFromString(String s) - init the string to function.
+10. public function copy() - copy the Monom to other function.
+11. public boolean equals(Object obj) - check if object is kind of monom and check with other monom if is equal.
+
 # Polynom
 Constructors :
 1. Polynom()– Creates default Polynom with no Monoms in it.
 2. Polynom(String s) – Creates a Polynom according to a given String .
 3. Polynom(Polynom_able p) - Creates a deep copy of the given Polynom_able (assuming Polynom able is from type Polynom).
+
 # Methods:
 1. void add(Monom m) – Adding a Monom to the Polynom.
 2. void add(Polynom_able p) – Adding a given Polynom to "our" Polynom.
@@ -50,9 +63,40 @@ Constructors :
 16. Double getCoefficientForSrting(String s) – check if the number before "x" and the Coefficient to an double number.
 17. Int getPowerForSrting(String s) – check if there is a number power and turn the char to a int number.
 18. Boolean isNumeric(String str) – checking if the string is a number.
+19. public function initFromString(String s) - init the string to function.
+20. public boolean equals(Object obj) - check if object is kind of polynom and check with other polynom if is equal.
+
+# ComplexFunction
+Constructors :
+1. public ComplexFunction(String op, function left, function right) - create a ComplexFunction.
+2. public ComplexFunction(function left) - create CompexFunction only with left function. 
+
+# Methods:
+1. public function initFromString(String s) - init the String to ComplexFunction.
+2. public void plus(function f1) - push the Plus Operation.
+3. public void mul(function f1) - push the Times Operation.
+4. public void div(function f1) - push the Divid Operation.
+5. public void max(function f1) - push the Max Operation.
+6. public void min(function f1) - push the Min Operation.
+7. public void comp(function f1) - push the Comp Operation.
+8. public function left () - return the left function.
+9. public function right () - return the right function.
+10. public Operation getOp() - return the Operation.
+11. public String toString() - print the ComplexFunction.
+12. public function copy() - copy the the Complex Function to other complex function.
+13. public double f(double x) - use the value of x to calculate the left function whit the right function dependent
+                                of the Operation that we get.
+                                
+#Fuction_GUI
+
+#Methods:
+1. public void initFromFile(String file) - read file
+
+                                
 There are two tests :
 * PolynomTests
 * MonomTests
+
 # PolynomTests:
 1. testToStringInit().
 2. PolynomAdd().
@@ -65,9 +109,12 @@ There are two tests :
 9. testPolynomAddMonom().
 10. testPolynomAddPolynom().
 11. testPolynomValueAtX().
+12. testPolyonomMultMonom()
+
 # MonomTests:
 1. testMonomCopy().
 2. testMonomToString().
 3. testDerivative().
 4. testAdd().
 5. testMultiply().
+

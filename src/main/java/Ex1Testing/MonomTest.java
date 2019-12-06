@@ -1,5 +1,6 @@
-package myMath;
+package Ex1Testing;
 
+import Ex1.Monom;
 import org.junit.Test;
 import static junit.framework.TestCase.*;
 
@@ -58,7 +59,7 @@ public class MonomTest {
 
     @Test
     public void testAdd() {
-        double conf = -3, conf2 = 3;
+        double conf = 3, conf2 = 3;
         int power = 3;
         Monom m1 = new Monom(conf,power);
         Monom m2 = new Monom(conf2,power);
