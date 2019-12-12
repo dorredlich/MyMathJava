@@ -1,6 +1,7 @@
 package Ex1Testing;
 
 import Ex1.Monom;
+import Ex1.function;
 import org.junit.Test;
 import static junit.framework.TestCase.*;
 
@@ -77,4 +78,25 @@ public class MonomTest {
         assertEquals(m3.get_coefficient(), conf * conf2,chk);
         assertEquals(m3.get_power(), pow1 + pow2,chk);
     }
+
+    @Test
+    public void testInitFromStringFunction(){
+        function m = new Monom("3x^2");
+        assertTrue("3.0x^2".equals(m.toString()));
+    }
+
+    @Test
+    public void testMonomFunctioncopy() {
+        Monom m1 = new Monom(2.17,4);
+        function m2 = new Monom(m1);
+        assertTrue("2.17x^4".equals(m2.toString()));
+    }
+
+    @Test
+    public void testMonomEqualsOoject() {
+        Monom m1 = new Monom(2.17,4);
+        Object m2 = new Monom(2.17,4);
+        assertTrue(m1.toString().equals(m2.toString()));
+    }
+
 }
