@@ -3,6 +3,7 @@ package Ex1Testing;
 import Ex1.Monom;
 import Ex1.Polynom;
 import Ex1.Polynom_able;
+import Ex1.function;
 import org.junit.Test;
 import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
@@ -110,6 +111,27 @@ public class PolynomTest {
         if(p.f(2)!=4)
             fail("Error in the Value at x function");
     }
+
+    @Test
+    public void testInitFromStringFunction()throws Exception{
+        function m = new Polynom("3x^4+4x^3-2");
+        assertTrue("3.0x^4+4.0x^3-2.0".equals(m.toString()));
+    }
+
+    @Test
+    public void testPolynomFunctioncopy()throws Exception {
+        Polynom p1 = new Polynom("3x^4+4x^3-2");
+        function m2 = new Polynom(p1);
+        assertTrue("3.0x^4+4.0x^3-2.0".equals(m2.toString()));
+    }
+
+    @Test
+    public void testPolynomEqualsOoject() throws Exception{
+        Polynom p1 = new Polynom("3x^4+4x^3-2");
+        Object p2 = new Polynom("3x^4+4x^3-2");
+        assertTrue(p1.toString().equals(p2.toString()));
+    }
+
 }
 
 

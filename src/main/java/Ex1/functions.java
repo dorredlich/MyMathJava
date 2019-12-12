@@ -18,7 +18,7 @@ public interface functions extends Collection<function>{
      * @param file - the file name
      * @throws IOException if the file is not writable
      */
- //   public void saveToFile(String file) throws IOException;
+    public void saveToFile(String file) throws IOException;
     /**
      * Draws all the functions in the collection in a GUI window using the
      * given parameters for the GUI windo and the range & resolution
@@ -28,11 +28,11 @@ public interface functions extends Collection<function>{
      * @param ry - the range of the vertical axis
      * @param resolution - the number of samples with in rx: the X_step = rx/resulution
      */
-  //  public void drawFunctions(int width, int height, Range rx, Range ry, int resolution);
+    public void drawFunctions(int width, int height, Range rx, Range ry, int resolution);
     /**
      * Draws all the functions in the collection in a GUI window using the given JSON file
      * @param json_file - the file with all the parameters for the GUI window.
      * Note: is the file id not readable or in wrong format should use default values.
      */
-   // public void drawFunctions(String json_file);
+    public void drawFunctions(String json_file);
 }

@@ -1,23 +1,27 @@
 # MyMathJava
 Ex1 Project
 by Dor Redlich
-There are six Interfaces :
+There are eight Interfaces :
 * Polynom_Able.
 * Function.
 * Cont_function.
+* Monom_Comperator
 * functions.
 * Operation.
 * complex_function.
+* Range
 
 There are five main classes :
 * Polynom
 * Monom
-* Monom_Comperator
 The Polynom is an Object composed of Monoms in a shape a*x^b .
 b MUST be a Natural Number.
 a can be a Real Number.
 * ComplexFunction.
 * Function_GUI.
+
+One help class:
+* GUI_params.
 
 # Monom
 Constructors :
@@ -86,14 +90,18 @@ Constructors :
 12. public function copy() - copy the the Complex Function to other complex function.
 13. public double f(double x) - use the value of x to calculate the left function whit the right function dependent
                                 of the Operation that we get.
+14. public boolean equals(Object obj) - return true if the Object equals the this ComplexFunction by value of X.
+                                        this can't do perfect compere for every point.                                
                                 
 #Fuction_GUI
 
 #Methods:
-1. public void initFromFile(String file) - read file
-
+1. public void initFromFile(String file) - read file and init the string from the to a functions.
+2. public void saveToFile(String file) - save collections of functions to a file.
+3. public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) - Draws all the functions in the collection in a GUI window 
+4. public void drawFunctions(String json_file) - Draws all the functions in the collection in a GUI window using the given JSON file
                                 
-There are two tests :
+There are four tests :
 * PolynomTests
 * MonomTests
 
@@ -117,4 +125,26 @@ There are two tests :
 3. testDerivative().
 4. testAdd().
 5. testMultiply().
+
+#ComplexFunctionTests:
+1. testFComplexFunction().
+2. testCopyComplexFunction().
+3. testInitFromString().
+4. testEqualsComplexFunction().
+5. testPlusComplexFunction().
+6. testMulComplexFunction().
+7. testDivComplexFunction().
+8. testMaxComplexFunction().
+9. testMinComplexFunction().
+10. testCompComplexFunction().
+
+#Function_GHIT:
+1. setUp().
+2. testFunctions_GUI().
+3. testSaveToFile().
+4. testInitFromFile().
+5. testDrawFunctions().
+6. testDrawFunctionsIntRangeRangeInt().
+7. FunctionsFactory().
+
 
